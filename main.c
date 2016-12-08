@@ -13,12 +13,22 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "test/test.h"
+#include "common.h"
+#include "links/getlinks.h"
 /*
  * 
  */
 int main(int argc, char** argv) {
-    testprint();
+    char *url = "http://www.panduoduo.net/s/name/精灵王座";
+    /** 存放盘多多搜索的url集合 */
+    urlArr searchUrlArr;
+    searchUrlArr.num = 0;
+    urlArr downUrlArr;
+    downUrlArr.num = 0;
+    /** 开始搜索获取盘多多url地址 */
+    getSearchUrlArr(url, &searchUrlArr);
+    /** 开始通过搜索url地址获取下载地址 */
+    getDownUrlArr(&searchUrlArr, &downUrlArr);
     return (EXIT_SUCCESS);
 }
 

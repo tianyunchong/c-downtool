@@ -35,6 +35,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/common.o \
+	${OBJECTDIR}/gumbo/gumbo_class_link.o \
+	${OBJECTDIR}/gumbo/gumbo_common.o \
+	${OBJECTDIR}/links/getlinks.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/test/test.o
 
@@ -62,6 +66,26 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/downtool: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/downtool ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/common.o: common.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/common.o common.c
+
+${OBJECTDIR}/gumbo/gumbo_class_link.o: gumbo/gumbo_class_link.c
+	${MKDIR} -p ${OBJECTDIR}/gumbo
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gumbo/gumbo_class_link.o gumbo/gumbo_class_link.c
+
+${OBJECTDIR}/gumbo/gumbo_common.o: gumbo/gumbo_common.c
+	${MKDIR} -p ${OBJECTDIR}/gumbo
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gumbo/gumbo_common.o gumbo/gumbo_common.c
+
+${OBJECTDIR}/links/getlinks.o: links/getlinks.c
+	${MKDIR} -p ${OBJECTDIR}/links
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/links/getlinks.o links/getlinks.c
 
 ${OBJECTDIR}/main.o: main.c
 	${MKDIR} -p ${OBJECTDIR}
