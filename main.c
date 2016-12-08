@@ -29,6 +29,7 @@ int main(int argc, char** argv) {
     getSearchUrlArr(url, &searchUrlArr);
     /** 开始通过搜索url地址获取下载地址 */
     getDownUrlArr(&searchUrlArr, &downUrlArr);
+    printf("下载地址数量: %d\n", downUrlArr.num);
     return (EXIT_SUCCESS);
 }
 

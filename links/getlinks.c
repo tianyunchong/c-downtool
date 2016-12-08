@@ -39,6 +39,7 @@ void getSearchUrlArr(char *url, urlArr *searchUrlArr)
     html = curlHtml(url, headers);
     curl_slist_free_all(headers);
     int len = strlenString(html);
+    printf("%s\n", "开始提取搜索地址");
     GumboOutput *output = get_gumbo_obj(html, len);
     getLinkOfTagNode(output->root, searchUrlArr, GUMBO_TAG_H3);
 }
@@ -60,29 +61,21 @@ void getDownUrlArr(urlArr *searchUrlArr, urlArr *downUrlArr)
     headers = curl_slist_append(headers, "Host:www.panduoduo.net");
     headers = curl_slist_append(headers, "Upgrade-Insecure-Requests:1");
     headers = curl_slist_append(headers, "User-Agent:Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.100 Safari/537.36");
-    int i = 1;
+    int i = 0;
     char url[100];
     char *html;
-    printf("%d\n", searchUrlArr->num);
+    printf("%s\n", "开始提取下载地址");
     while (i < searchUrlArr->num) {
         strcpy(url, "http://www.panduoduo.net");
         strcat(url, searchUrlArr->urls[i]);
          /** 获取下载页面html */
         html = curlHtml(url, headers);
-        printf("%s\n", html);
         /** 提取下载链接 */
         int len = strlenString(html);
         printf("%d: %s,长度: %d\n", i, url, len);
         GumboOutput *output = get_gumbo_obj(html, len);
         getLinksOfClassNode(output->root, downUrlArr, "dbutton2");
         i++;
-        if (i > 1) {
-            break;
-        }
     }
-    fprintf(stdout, "down:%d\n", downUrlArr->num);
-    fprintf(stdout, "%s\n", downUrlArr->urls[0]);
-    fprintf(stdout, "%s\n", downUrlArr->urls[1]);
-    fprintf(stdout, "%s\n", downUrlArr->urls[2]);
     curl_slist_free_all(headers);
 }
