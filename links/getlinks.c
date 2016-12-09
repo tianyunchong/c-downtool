@@ -79,3 +79,24 @@ void getDownUrlArr(urlArr *searchUrlArr, urlArr *downUrlArr)
     }
     curl_slist_free_all(headers);
 }
+
+/**
+ * 通过盘多多下载网址获取
+ */
+void getWpDownUrlArr(urlArr *downUrlArr, urlArr *wpDownUrlArr) 
+{
+    struct curl_slist *headers = NULL;
+    int i = 0;
+    char url[200];
+    char * html;
+    while (i < downUrlArr->num) {
+        strcpy(url, downUrlArr->urls[i]);
+        /** 获取盘多多中转页面 */
+        html = curlHtml(url, headers);
+        int len = strlenString(html);
+        /** 从中转页面提取到最终的网盘地址 */
+        GumboOutput *output = get_gumbo_obj(html, len);
+        search_for_links(output->root, wpDownUrlArr);
+        i++;
+    }
+}

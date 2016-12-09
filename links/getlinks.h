@@ -16,4 +16,5 @@
 #include "../common.h"
 void getSearchUrlArr(char *url, urlArr *searchUrlArr);
 void getDownUrlArr(urlArr *searchUrlArr, urlArr *downUrlArr);
+void getWpDownUrlArr(urlArr *downUrlArr, urlArr *wpDownUrlArr);
 #endif /* GETLINKS_H */
