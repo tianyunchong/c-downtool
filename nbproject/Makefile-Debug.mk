@@ -61,11 +61,11 @@ LDLIBSOPTIONS=-L/usr/local/include -L/usr/include -L/usr/include/curl `pkg-confi
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/downtool
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/c-downtool
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/downtool: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/c-downtool: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/downtool ${OBJECTFILES} ${LDLIBSOPTIONS} -s
+	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/c-downtool ${OBJECTFILES} ${LDLIBSOPTIONS} -s
 
 ${OBJECTDIR}/common.o: common.c
 	${MKDIR} -p ${OBJECTDIR}
